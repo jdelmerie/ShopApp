@@ -1,17 +1,4 @@
-// document.getElementById("listArticles").addEventListener("click", function () {
-//   categories.forEach((cat) => console.log(cat.name));
-//   categories.forEach((cat) => addCat(cat.name));
-// });
-
-// function addCat(text) {
-//   let testUl = document.getElementById("test");
-//   let li = document.createElement("li");
-//   li.appendChild(document.createTextNode(text));
-//   testUl.appendChild(li);
-// }
-
 //DATA
-
 class Article {
   constructor(id, description, brand, price, catId) {
     this.id = id;
@@ -46,29 +33,54 @@ let tapis = new Article(2, "Tapis souris", "Chaêau bleu", 5, 1);
 
 let articles = new Array(souris, tapis);
 
+//Variables globales
 let tbodyArticle = document.getElementById("trArticle");
+let articleBtn = document.getElementById("listeA");
+let blocArticle = document.getElementById("article");
+let tbodyCategory = document.getElementById("trCategory");
+let catBtn = document.getElementById("listeB");
+let blocCategory = document.getElementById("category");
 
-document.getElementById("listA").addEventListener("click", function () {
-
-  articles.forEach(art => {
+//Affichage de la liste des articles
+articleBtn.addEventListener("click", function () {
+  blocArticle.style.display = "block";
+  blocCategory.style.display = "none"; 
+  articles.forEach((art) => {
     let row = document.createElement("tr");
-    let desc = document.createElement("td");
-    desc.appendChild(document.createTextNode(art.description));
-    let brand = document.createElement("td");
-    brand.appendChild(document.createTextNode(art.brand));
-    let cat = document.createElement("td");
-    cat.appendChild(document.createTextNode(art.catId));
-    let price = document.createElement("td");
-    price.appendChild(document.createTextNode(art.price));
-    row.appendChild(desc);
-    row.appendChild(brand);
-    row.appendChild(cat);
-    row.appendChild(price);
+    createTd(row, art.description);
+    createTd(row, art.brand);
+    createTd(row, art.catId);
+    createTd(row, art.price);
     let btnAction = document.createElement("button");
     btnAction.innerHTML = "Ajouter";
     let action = document.createElement("td");
     action.appendChild(btnAction);
     row.appendChild(action);
     tbodyArticle.appendChild(row);
-  })
+  });
 });
+
+
+//afichage de la liste des catégories
+catBtn.addEventListener("click", function(){
+  blocArticle.style.display = "none";
+  blocCategory.style.display = "block"; 
+  categories.forEach(cat => {
+    let row = document.createElement("tr");
+    createTd(row, cat.name);
+    createTd(row, cat.description);
+    let btnAction = document.createElement("button");
+    btnAction.innerHTML = "Voir les articles";
+    let action = document.createElement("td");
+    action.appendChild(btnAction);
+    row.appendChild(action);
+    tbodyCategory.appendChild(row);
+  })
+})
+
+//create el td
+function createTd(row, text) {
+  let td = document.createElement("td");
+  td.appendChild(document.createTextNode(text));
+  row.appendChild(td);
+}

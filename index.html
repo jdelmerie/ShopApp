@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="style.css" />
@@ -21,7 +24,7 @@
       <div class="container1">
         <div class="navbarChoise">
           <div>
-            <a id="listA" href="#">List Articles</a>
+            <a id="listeA" href="#">List Articles</a>
           </div>
         </div>
         <div class="navbarChoise">
@@ -36,71 +39,44 @@
         </div>
       </div>
       <div class="container2">
-        <div class="article">
+        <div id="article">
           <div class="titleinf">
             <div>
               <h2>List Articles</h2>
             </div>
           </div>
-          <div class="infArticle">
+          <div id="infArticle">
             <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>DESCRIPTION</th>
-                    <th>BRAND</th>
-                    <th>CATEGORY</th>
-                    <th>PRIX</th>
-                    <th>ACTION</th>
-                  </tr>
-                </thead>
-                <tbody id="trArticle">
-
-                </tbody>
-              </table>
+              <thead>
+                <tr>
+                  <th>DESCRIPTION</th>
+                  <th>BRAND</th>
+                  <th>CATEGORY</th>
+                  <th>PRIX</th>
+                  <th>ACTION</th>
+                </tr>
+              </thead>
+              <tbody id="trArticle"></tbody>
+            </table>
+          </div>
         </div>
-        <div class="category">
+        <div id="category">
           <div class="titleinf">
             <div>
               <h2>List Categories</h2>
             </div>
           </div>
           <div class="infArticle">
-            <div class="arrayArticle">
-              <div class="arrayTitle">
-                <div class="arrayLimit">
-                  <p>DESCRIPTION</p>
-                </div>
-                <div class="arrayLimit">
-                  <p>BRAND</p>
-                </div>
-                <div class="arrayLimit">
-                  <p>CATEGORY</p>
-                </div>
-                <div class="arrayLimit">
-                  <p>PRICE</p>
-                </div>
-                <div class="arrayLimit">
-                  <p>ACTION</p>
-                </div>
-              </div>
-              <div class="result" id="catResult">
-                <div class="arrayResult">
-                  <p></p>
-                </div>
-                <div class="arrayResult">
-                  <p></p>
-                </div>
-                <div class="arrayResult">
-                  <p></p>
-                </div>
-                <div class="arrayResult">
-                  <p></p>
-                </div>
-                <div class="arrayResult">
-                  <p><a href="">ADD</a></p>
-                </div>
-              </div>
-            </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>NAME</th>
+                  <th>DESCRIPTION</th>
+                  <th>ACTION</th>
+                </tr>
+              </thead>
+              <tbody id="trCategory"></tbody>
+            </table>
           </div>
         </div>
       </div>

@@ -56,8 +56,8 @@ body {
   /* border: 1px solid black; */
   display: block;
 }
-.article {
-  /* display: none; */
+#article, #category {
+  display: none;
 }
 .titleinf {
   display: flex;
@@ -95,8 +95,4 @@ body {
 .arrayResult p a {
   text-decoration: none;
   color: black;
-}
-/**/
-.category {
-  display: none;
 }
