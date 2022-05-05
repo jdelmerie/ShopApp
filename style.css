@@ -63,7 +63,7 @@ flex-direction: column;
     display: block;
 }
 .article{
-    display: none;
+    /* display: none; */
 }
 .titleinf{
     display: flex;
@@ -107,6 +107,9 @@ flex-direction: column;
     text-decoration: none;
     color: black;
 }
+#trArticle{
+    display: block;
+}
 /*CATEGORIES*/
 .category{
     display: none;
@@ -116,7 +119,7 @@ flex-direction: column;
 }
 /*CART*/
 .cart{
-    /* display: none; */
+    display: none;
 }
 .arrayLimit2{
     /* border: 1px solid black; */
