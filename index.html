@@ -1,50 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <title>Document</title>
-</head>
-<body>
-    <section >
-        <div class="title">
-            <h1>Welcome to the shop</h1>
-        </div>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Shop</title>
+  </head>
+  <body>
+    <section>
+      <div class="title">
+        <h1>Welcome to the shop</h1>
+      </div>
     </section>
     <section class="navbar">
-        <div class="container1">
-            <div class="navbarChoise">
-                <div>
-                    <a href="">List Articles</a>
-                </div>
-            </div>
-            <div class="navbarChoise">
-                <div>
-                    <a href=""> List Catégories</a>
-                </div>
-            </div>
-            <div class="navbarChoise">
-                <div>
-                    <a href="">Cart</a>
-                </div>
-            </div>
+      <div class="container1">
+        <div class="navbarChoise">
+          <div>
+            <a id="listA" href="#">List Articles</a>
+          </div>
         </div>
-        <div class="container2">
-            <div class="information">
-                <div>
-
-                </div>
-            </div>
-
+        <div class="navbarChoise">
+          <div>
+            <a id="listeB" href="#"> List Catégories</a>
+          </div>
         </div>
+        <div class="navbarChoise">
+          <div>
+            <a id="listeC" href="">Cart</a>
+          </div>
+        </div>
+      </div>
+      <div class="container2">
+        <div class="article">
+          <div class="titleinf">
+            <div>
+              <h2>List Articles</h2>
+            </div>
+          </div>
+          <div class="infArticle">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>DESCRIPTION</th>
+                    <th>BRAND</th>
+                    <th>CATEGORY</th>
+                    <th>PRIX</th>
+                    <th>ACTION</th>
+                  </tr>
+                </thead>
+                <tbody id="trArticle">
 
-
+                </tbody>
+              </table>
+        </div>
+        <div class="category">
+          <div class="titleinf">
+            <div>
+              <h2>List Categories</h2>
+            </div>
+          </div>
+          <div class="infArticle">
+            <div class="arrayArticle">
+              <div class="arrayTitle">
+                <div class="arrayLimit">
+                  <p>DESCRIPTION</p>
+                </div>
+                <div class="arrayLimit">
+                  <p>BRAND</p>
+                </div>
+                <div class="arrayLimit">
+                  <p>CATEGORY</p>
+                </div>
+                <div class="arrayLimit">
+                  <p>PRICE</p>
+                </div>
+                <div class="arrayLimit">
+                  <p>ACTION</p>
+                </div>
+              </div>
+              <div class="result" id="catResult">
+                <div class="arrayResult">
+                  <p></p>
+                </div>
+                <div class="arrayResult">
+                  <p></p>
+                </div>
+                <div class="arrayResult">
+                  <p></p>
+                </div>
+                <div class="arrayResult">
+                  <p></p>
+                </div>
+                <div class="arrayResult">
+                  <p><a href="">ADD</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-    
-
-</body>
-
+  </body>
 </html>

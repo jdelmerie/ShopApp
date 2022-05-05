@@ -1,56 +1,102 @@
-body{
-    background-color: rgb(212, 230, 235);
+body {
+  background-color: rgb(212, 230, 235);
 }
-.title{
-    display: flex;
-    justify-content: center;
-    border: 1px solid black;
-    border-radius: 1rem;
-    background-color: rgb(106, 167, 216);
-    color: white;
+.title {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 1rem;
+  background-color: rgb(106, 167, 216);
+  color: white;
 }
-.navbar{
-    display: flex;
+/*NAVBAR*/
+.navbar {
+  display: flex;
 }
-.navbarChoise{
-    display: flex;
-flex-direction: column;
+.navbarChoise {
+  display: flex;
+  flex-direction: column;
 }
-.container1{
-    padding: 40px;
-    margin: 40px;
-    height: 700px;
-    width: 80%;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+.container1 {
+  padding: 40px;
+  margin: 40px;
+  height: 700px;
+  width: 80%;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
-.container2{
-    padding: 40px;
-    margin: 40px;
-    height: 700px;
-    width: 500%;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+.navbarChoise {
+  background-color: rgb(106, 167, 216);
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 10px;
+  text-decoration: none;
+  list-style: none;
+  justify-content: center;
 }
-.navbarChoise{
-    background-color: rgb(106, 167, 216);
-    border: 1px solid black;
-    border-radius: 1rem;
-    padding: 10px;
-    text-decoration: none;
-    list-style: none;
-    justify-content: center;
+.navbarChoise div {
+  justify-content: center;
 }
-.navbarChoise div{
-    justify-content: center;
+.navbarChoise div a {
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  list-style: none;
 }
-.navbarChoise div a{
-    justify-content: center;
-    color: white;
-    text-decoration: none;
-    list-style: none;
+/*FIN NAVBAR*/
+
+/*FULL ARRAY*/
+.container2 {
+  padding: 40px;
+  margin: 40px;
+  height: 700px;
+  width: 500%;
+  /* border: 1px solid black; */
+  display: block;
+}
+.article {
+  /* display: none; */
+}
+.titleinf {
+  display: flex;
+  justify-content: center;
+}
+
+.arrayArticle {
+}
+.arrayTitle {
+  display: flex;
+  justify-content: center;
+}
+.arrayLimit {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(106, 167, 216);
+  width: 100%;
+}
+.arrayTitle div p {
+  color: white;
+  margin: 20px;
+}
+.result {
+  display: flex;
+  justify-content: center;
+}
+.arrayResult {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(212, 230, 235);
+  width: 100%;
+}
+.arrayResult p a {
+  text-decoration: none;
+  color: black;
+}
+/**/
+.category {
+  display: none;
 }
