@@ -62,6 +62,7 @@ let tbodyCategory = document.getElementById("trCategory");
 let catBtn = document.getElementById("listeB");
 let blocCategory = document.getElementById("category");
 let trArticleByCat = document.getElementById("trArticleByCat");
+let catListName = document.getElementById("catListName");
 
 //Affichage de la liste des articles
 articleBtn.addEventListener("click", function () {
@@ -92,11 +93,38 @@ catBtn.addEventListener("click", function () {
     createTd(row, cat.description);
     let btnAction = document.createElement("button");
     btnAction.innerHTML = "Voir les articles";
+    btnAction.value = cat.id;
+    btnAction.classList.add("btnCat");
     let action = document.createElement("td");
     action.appendChild(btnAction);
     row.appendChild(action);
     tbodyCategory.appendChild(row);
   });
+
+  let catBtns = document.getElementsByClassName("btnCat");
+
+  for (let j = 0; j < catBtns.length; j++) {
+    catBtns[j].addEventListener("click", function () {
+      let catId = catBtns[j].value;
+      articleByCat.style.display = "block";
+      articles.forEach((art) => {
+        if (art.catId == catId) {
+          catListName.innerHTML = art.getCatName();
+          let newRow = document.createElement("tr");
+          createTd(newRow, art.description);
+          createTd(newRow, art.brand);
+          createTd(newRow, art.getCatName());
+          createTd(newRow, art.price + " €");
+          let btnAction = document.createElement("button");
+          btnAction.innerHTML = "Ajouter";
+          let action = document.createElement("td");
+          action.appendChild(btnAction);
+          newRow.appendChild(action);
+          trArticleByCat.appendChild(newRow);
+        }
+      });
+    });
+  }
 });
 
 //create el td
