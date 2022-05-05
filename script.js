@@ -66,8 +66,12 @@ let catListName = document.getElementById("catListName");
 
 //Affichage de la liste des articles
 articleBtn.addEventListener("click", function () {
+
+  tbodyArticle.replaceChildren();
+
   blocArticle.style.display = "block";
   blocCategory.style.display = "none";
+
   articles.forEach((art) => {
     let row = document.createElement("tr");
     createTd(row, art.description);
@@ -85,6 +89,7 @@ articleBtn.addEventListener("click", function () {
 
 //afichage de la liste des catégories
 catBtn.addEventListener("click", function () {
+  tbodyCategory.replaceChildren();
   blocArticle.style.display = "none";
   blocCategory.style.display = "block";
   categories.forEach((cat) => {
@@ -105,6 +110,7 @@ catBtn.addEventListener("click", function () {
 
   for (let j = 0; j < catBtns.length; j++) {
     catBtns[j].addEventListener("click", function () {
+      trArticleByCat.replaceChildren();
       let catId = catBtns[j].value;
       articleByCat.style.display = "block";
       articles.forEach((art) => {
@@ -126,6 +132,10 @@ catBtn.addEventListener("click", function () {
     });
   }
 });
+
+function clearBox(elementID) {
+  document.getElementById(elementID).innerHTML = "";
+}
 
 //create el td
 function createTd(row, text) {
