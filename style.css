@@ -9,6 +9,7 @@ body{
     background-color: rgb(106, 167, 216);
     color: white;
 }
+/*NAVBAR*/
 .navbar{
     display: flex;
 }
@@ -21,17 +22,7 @@ flex-direction: column;
     margin: 40px;
     height: 700px;
     width: 80%;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-.container2{
-    padding: 40px;
-    margin: 40px;
-    height: 700px;
-    width: 500%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -54,3 +45,64 @@ flex-direction: column;
     text-decoration: none;
     list-style: none;
 }
+/*FIN NAVBAR*/
+
+/*FULL ARRAY*/
+.container2{
+    padding: 40px;
+    margin: 40px;
+    height: 700px;
+    width: 500%;
+    /* border: 1px solid black; */
+    display: block;
+}
+.article{
+    /* display: none; */
+}
+.titleinf{
+    display: flex;
+    justify-content: center;
+}
+
+.arrayArticle{
+    
+}
+.arrayTitle{
+    
+    display: flex;
+    justify-content: center;
+    
+}
+.arrayLimit{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(106, 167, 216);
+    width: 100%;
+    
+}
+.arrayTitle div p{
+    color: white;
+    margin: 20px;
+}
+.result{
+    display: flex;
+    justify-content: center;
+}
+.arrayResult{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(212, 230, 235);
+    width: 100%;
+}
+.arrayResult p a{
+    text-decoration: none;
+    color: black;
+}
+/**/
+.category{
+    display: none;
+}
+
+
