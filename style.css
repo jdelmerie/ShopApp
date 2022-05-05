@@ -8,6 +8,9 @@ body{
     border-radius: 1rem;
     background-color: rgb(106, 167, 216);
     color: white;
+    margin-left: 4%;
+    margin-right:4% ;
+
 }
 /*NAVBAR*/
 .navbar{
@@ -18,9 +21,9 @@ body{
 flex-direction: column;
 }
 .container1{
-    padding: 40px;
-    margin: 40px;
-    height: 700px;
+    padding: 30px;
+    margin: 30px;
+    height: 500px;
     width: 80%;
     /* border: 1px solid black; */
     display: flex;
@@ -33,13 +36,16 @@ flex-direction: column;
     border-radius: 1rem;
     padding: 10px;
     text-decoration: none;
-    list-style: none;
     justify-content: center;
 }
 .navbarChoise div{
     justify-content: center;
 }
 .navbarChoise div a{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: x-large;
+    display: flex;
     justify-content: center;
     color: white;
     text-decoration: none;
@@ -57,7 +63,7 @@ flex-direction: column;
     display: block;
 }
 .article{
-    /* display: none; */
+    display: none;
 }
 .titleinf{
     display: flex;
@@ -80,6 +86,7 @@ flex-direction: column;
     background-color: rgb(106, 167, 216);
     width: 100%;
     
+    
 }
 .arrayTitle div p{
     color: white;
@@ -100,9 +107,28 @@ flex-direction: column;
     text-decoration: none;
     color: black;
 }
-/**/
+/*CATEGORIES*/
 .category{
     display: none;
+}
+.arrayCategory{
+
+}
+/*CART*/
+.cart{
+    /* display: none; */
+}
+.arrayLimit2{
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    background-color: rgb(212, 230, 235);
+    width: 100%;
+    
+}
+.arrayLimit a{
+    text-decoration: none;
+    color: white;
 }
 
 
