@@ -160,6 +160,8 @@ catBtn.addEventListener("click", function () {
           createTd(newRow, art.price + " €");
           let btnAction = document.createElement("button");
           btnAction.innerHTML = "Ajouter";
+          btnAction.value = art.id;
+          btnAction.classList.add("addArticle");
           let action = document.createElement("td");
           action.appendChild(btnAction);
           newRow.appendChild(action);
