@@ -57,7 +57,8 @@ body {
 }
 #article,
 #category,
-#articleByCat {
+#articleByCat,
+#cart {
   display: none;
 }
 .titleinf {

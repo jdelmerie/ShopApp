@@ -1,11 +1,12 @@
 //DATA
 class Article {
-  constructor(id, description, brand, price, catId) {
+  constructor(id, description, brand, price, catId, quantity = 1) {
     this.id = id;
     this.description = description;
     this.brand = brand;
     this.price = price;
     this.catId = catId;
+    this.quantity = quantity;
   }
 
   getCatName() {
@@ -54,6 +55,9 @@ let articles = new Array(
   clavier
 );
 
+//panier
+let cart = localStorage;
+
 //Variables globales
 let tbodyArticle = document.getElementById("bdArticle");
 let articleBtn = document.getElementById("listeA");
@@ -68,12 +72,15 @@ let blocCategory = document.getElementById("category");
 
 let trArticleByCat = document.getElementById("trArticleByCat");
 let catListName = document.getElementById("catListName");
+let trCart = document.getElementById("trCart");
+let blocCart = document.getElementById("cart");
 
 //Affichage de la liste des articles
 articleBtn.addEventListener("click", function () {
   tbodyArticle.replaceChildren();
   blocArticle.style.display = "block";
   blocCategory.style.display = "none";
+  blocCart.style.display = "none";
   offArticle();
   onCat();
   onCart();
@@ -92,11 +99,32 @@ articleBtn.addEventListener("click", function () {
       alert("hello, world");
     };
     btnAction.innerHTML = "Ajouter";
+    btnAction.value = art.id;
+    btnAction.classList.add("addArticle");
     let action = document.createElement("td");
     action.appendChild(btnAction);
     row.appendChild(action);
     tbodyArticle.appendChild(row);
   });
+
+  //ajout d'un article
+  let addBtns = document.getElementsByClassName("addArticle");
+  for (let i = 0; i < addBtns.length; i++) {
+    addBtns[i].addEventListener("click", function () {
+      let articleId = addBtns[i].value;
+      articles.forEach((art) => {
+        if (articleId == art.id) {
+          for (let i = 0; i < cart.length; i++) {
+            if (cart.key(i) == art.id) {
+              art.quantity += 1;
+            }
+          }
+          localStorage.setItem(articleId, art.quantity);
+          console.log("article ajouté");
+        }
+      });
+    });
+  }
 });
 
 //afichage de la liste des catégories
@@ -105,6 +133,7 @@ catBtn.addEventListener("click", function () {
   tbodyCategory.replaceChildren();
   blocArticle.style.display = "none";
   blocCategory.style.display = "block";
+  blocCart.style.display = "none";
   onArticle();
   offCat();
   onCart();
@@ -150,6 +179,35 @@ catBtn.addEventListener("click", function () {
     });
   }
 
+});
+
+//affichage du panier
+cartBtn.addEventListener("click", function () {
+  trCart.replaceChildren();
+  blocArticle.style.display = "none";
+  blocCategory.style.display = "none";
+  blocCart.style.display = "block";
+  console.log(cart);
+  console.log(articles);
+  for (let i = 0; i < cart.length; i++) {
+    articles.forEach((art) => {
+      if (cart.key(i) == art.id) {
+        let cartRow = document.createElement("tr");
+        createTd(cartRow, art.description);
+        createTd(cartRow, art.brand);
+        createTd(cartRow, art.getCatName());
+        createTd(cartRow, art.price + " €");
+        createTd(cartRow, art.quantity);
+        let btnAction = document.createElement("button");
+        btnAction.innerHTML = "Supprimer";
+        btnAction.value = art.id;
+        let action = document.createElement("td");
+        action.appendChild(btnAction);
+        cartRow.appendChild(action);
+        trCart.appendChild(cartRow);
+      }
+    });
+  }
 });
 
 //create el td
