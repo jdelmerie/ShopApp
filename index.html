@@ -22,36 +22,36 @@
     </section>
     <section class="navbar">
       <div class="container1">
-            <div id="listeA" class="navbarChoise">
-                <div>
-                    <a  href="#">List Articles</a>
-                </div>
-            </div>
-            <div id="listeA2" class="navbarChoise">
-                <div>
-                <p>List Articles</p>
-                </div>
-            </div>
-            <div id="listeB" class="navbarChoise">
-                <div>
-                    <a  href="#"> List Catégories</a>
-                </div>
-            </div>
-            <div id="listeB2" class="navbarChoise">
-                <div>
-                <p>List Catégories</p>
-                </div>
-            </div>
-            <div id="listeC" class="navbarChoise">
-                <div>
-                    <a  href="">Cart</a>
-                </div>
-            </div>
-            <div id="listeC2" class="navbarChoise">
-                <div>
-                <p>Cart</p>
-                </div>
-            </div>
+        <div id="listeA" class="navbarChoise">
+          <div>
+            <a href="#">List Articles</a>
+          </div>
+        </div>
+        <div id="listeA2" class="navbarChoise">
+          <div>
+            <p>List Articles</p>
+          </div>
+        </div>
+        <div id="listeB" class="navbarChoise">
+          <div>
+            <a href="#"> List Catégories</a>
+          </div>
+        </div>
+        <div id="listeB2" class="navbarChoise">
+          <div>
+            <p>List Catégories</p>
+          </div>
+        </div>
+        <div id="listeC" class="navbarChoise">
+          <div>
+            <a href="#">Cart</a>
+          </div>
+        </div>
+        <div id="listeC2" class="navbarChoise">
+          <div>
+            <p>Cart</p>
+          </div>
+        </div>
       </div>
       <div class="container2">
         <div id="article">
@@ -93,10 +93,10 @@
               <tbody id="trCategory"></tbody>
             </table>
           </div>
-          <div id="articleByCate">
+          <div id="articleByCat">
             <div class="titleinf">
               <div>
-                <h2>List Articles of <span id="catList"></span></h2>
+                <h2>List Articles of <span id="catListName"></span></h2>
               </div>
             </div>
             <div id="infArticle">
@@ -113,6 +113,36 @@
                 <tbody id="trArticleByCat"></tbody>
               </table>
             </div>
+          </div>
+        </div>
+        <div id="cart">
+          <div class="titleinf">
+            <div>
+              <h2>Cart</h2>
+            </div>
+          </div>
+          <div id="infArticle">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>DESCRIPTION</th>
+                  <th>BRAND</th>
+                  <th>CATEGORY</th>
+                  <th>PRIX</th>
+                  <th>QUANTITY</th>
+                  <th>ACTION</th>
+                </tr>
+              </thead>
+              <tbody id="trCart"></tbody>
+            </table>
+            <div class="total">
+                <div>
+                  <p>TOTAL</p>
+                  <p id="total"> </p>
+                  <p>€uro</p>
+                </div>
+            </div>
+            <button>Valider le panier</button>
           </div>
         </div>
       </div>

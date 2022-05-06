@@ -1,14 +1,12 @@
-
-
 //DATA
-
 class Article {
-  constructor(id, description, brand, price, catId) {
+  constructor(id, description, brand, price, catId, quantity = 1) {
     this.id = id;
     this.description = description;
     this.brand = brand;
     this.price = price;
     this.catId = catId;
+    this.quantity = quantity;
   }
 
   getCatName() {
@@ -29,8 +27,6 @@ class Category {
     this.description = description;
   }
 }
-
-//add cart class
 
 //liste des cat
 let info = new Category(1, "Matériel informatique", "Indispendsable à un PC");
@@ -59,27 +55,34 @@ let articles = new Array(
   clavier
 );
 
+//panier
+let cart = localStorage;
 
 //Variables globales
 let tbodyArticle = document.getElementById("trArticle");
 let articleBtn = document.getElementById("listeA");
-let articleBtn2=document.getElementById("listeA2");
 let blocArticle = document.getElementById("article");
 let tbodyCategory = document.getElementById("trCategory");
 let catBtn = document.getElementById("listeB");
 let catBtn2 = document.getElementById("listeB2");
+let articleBtn2 = document.getElementById("listeA2");
 let cartBtn = document.getElementById("listeC");
 let cartBtn2 = document.getElementById("listeC2");
 let blocCategory = document.getElementById("category");
 let trArticleByCat = document.getElementById("trArticleByCat");
+let catListName = document.getElementById("catListName");
+let trCart = document.getElementById("trCart");
+let blocCart = document.getElementById("cart");
 
 //Affichage de la liste des articles
 articleBtn.addEventListener("click", function () {
   tbodyArticle.replaceChildren();
- 
+  blocArticle.style.display = "block";
+  blocCategory.style.display = "none";
+  blocCart.style.display = "none";
   offArticle();
-  onCat()
-  onCart()
+  onCat();
+  onCart();
   articles.forEach((art) => {
     let row = document.createElement("tr");
     createTd(row, art.description);
@@ -88,19 +91,43 @@ articleBtn.addEventListener("click", function () {
     createTd(row, art.price + " €");
     let btnAction = document.createElement("button");
     btnAction.innerHTML = "Ajouter";
+    btnAction.value = art.id;
+    btnAction.classList.add("addArticle");
     let action = document.createElement("td");
     action.appendChild(btnAction);
     row.appendChild(action);
     tbodyArticle.appendChild(row);
   });
+
+  //ajout d'un article
+  let addBtns = document.getElementsByClassName("addArticle");
+  for (let i = 0; i < addBtns.length; i++) {
+    addBtns[i].addEventListener("click", function () {
+      let articleId = addBtns[i].value;
+      articles.forEach((art) => {
+        if (articleId == art.id) {
+          for (let i = 0; i < cart.length; i++) {
+            if (cart.key(i) == art.id) {
+              art.quantity += 1;
+            }
+          }
+          localStorage.setItem(articleId, art.quantity);
+          console.log("article ajouté");
+        }
+      });
+    });
+  }
 });
+
 //afichage de la liste des catégories
 catBtn.addEventListener("click", function () {
   tbodyCategory.replaceChildren();
- 
+  blocArticle.style.display = "none";
+  blocCategory.style.display = "block";
+  blocCart.style.display = "none";
   onArticle();
-  offCat()
-  onCart()
+  offCat();
+  onCart();
   categories.forEach((cat) => {
     let row = document.createElement("tr");
     createTd(row, cat.name);
@@ -117,6 +144,7 @@ catBtn.addEventListener("click", function () {
 
   let catBtns = document.getElementsByClassName("btnCat");
 
+  //gestion de l'affichage des articles par catégorie
   for (let j = 0; j < catBtns.length; j++) {
     catBtns[j].addEventListener("click", function () {
       trArticleByCat.replaceChildren();
@@ -141,10 +169,39 @@ catBtn.addEventListener("click", function () {
     });
   }
 });
-//clear box
-function clearBox(elementID) {
-  document.getElementById(elementID).innerHTML = "";
-}
+
+//affichage du panier
+cartBtn.addEventListener("click", function () {
+  trCart.replaceChildren();
+  blocArticle.style.display = "none";
+  blocCategory.style.display = "none";
+  blocCart.style.display = "block";
+  onArticle()
+  onCat()
+  offCart()
+  console.log(cart);
+  console.log(articles);
+  for (let i = 0; i < cart.length; i++) {
+    articles.forEach((art) => {
+      if (cart.key(i) == art.id) {
+        let cartRow = document.createElement("tr");
+        createTd(cartRow, art.description);
+        createTd(cartRow, art.brand);
+        createTd(cartRow, art.getCatName());
+        createTd(cartRow, art.price + " €");
+        createTd(cartRow, art.quantity);
+        let btnAction = document.createElement("button");
+        btnAction.innerHTML = "Supprimer";
+        btnAction.value = art.id;
+        let action = document.createElement("td");
+        action.appendChild(btnAction);
+        cartRow.appendChild(action);
+        trCart.appendChild(cartRow);
+      }
+    });
+  }
+});
+
 //create el td
 function createTd(row, text) {
   let td = document.createElement("td");
@@ -153,27 +210,32 @@ function createTd(row, text) {
 }
 
 //gestion btn
-function offArticle(){
+function offArticle() {
   articleBtn.style.display = "none";
-  articleBtn2.style.display="block";
+  articleBtn2.style.display = "block";
 }
-function onArticle(){
+
+function onArticle() {
   articleBtn.style.display = "block";
-  articleBtn2.style.display="none";
+  articleBtn2.style.display = "none";
 }
-function offCat(){
+
+function offCat() {
   catBtn.style.display = "none";
-  catBtn2.style.display="block";
+  catBtn2.style.display = "block";
 }
-function onCat(){
+
+function onCat() {
   catBtn.style.display = "block";
-  catBtn2.style.display="none";
+  catBtn2.style.display = "none";
 }
-function offCart(){
+
+function offCart() {
   cartBtn.style.display = "none";
-  cartBtn2.style.display="block";
+  cartBtn2.style.display = "block";
 }
-function onCart(){
+
+function onCart() {
   cartBtn.style.display = "block";
-  cartBtn2.style.display="none";
+  cartBtn2.style.display = "none";
 }
