@@ -1,11 +1,12 @@
 //DATA
 class Article {
-  constructor(id, description, brand, price, catId) {
+  constructor(id, description, brand, price, catId, quantity = 1) {
     this.id = id;
     this.description = description;
     this.brand = brand;
     this.price = price;
     this.catId = catId;
+    this.quantity = quantity;
   }
 
   getCatName() {
@@ -105,8 +106,12 @@ articleBtn.addEventListener("click", function () {
       let articleId = addBtns[i].value;
       articles.forEach((art) => {
         if (articleId == art.id) {
-          let artToAdd = `${art.description} - ${art.brand} - ${art.price}`;
-          localStorage.setItem(articleId, artToAdd);
+          for (let i = 0; i < cart.length; i++) {
+            if (cart.key(i) == art.id) {
+              art.quantity += 1;
+            }
+          }
+          localStorage.setItem(articleId, art.quantity);
           console.log("article ajouté");
         }
       });
@@ -165,15 +170,14 @@ catBtn.addEventListener("click", function () {
   }
 });
 
-cart.clear();
-
 //affichage du panier
 cartBtn.addEventListener("click", function () {
   trCart.replaceChildren();
   blocArticle.style.display = "none";
   blocCategory.style.display = "none";
   blocCart.style.display = "block";
-
+  console.log(cart);
+  console.log(articles);
   for (let i = 0; i < cart.length; i++) {
     articles.forEach((art) => {
       if (cart.key(i) == art.id) {
@@ -182,7 +186,7 @@ cartBtn.addEventListener("click", function () {
         createTd(cartRow, art.brand);
         createTd(cartRow, art.getCatName());
         createTd(cartRow, art.price + " €");
-        createTd(cartRow, 1);
+        createTd(cartRow, art.quantity);
         let btnAction = document.createElement("button");
         btnAction.innerHTML = "Supprimer";
         btnAction.value = art.id;
