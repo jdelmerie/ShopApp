@@ -129,7 +129,6 @@ articleBtn.addEventListener("click", function () {
 
 //afichage de la liste des catégories
 catBtn.addEventListener("click", function () {
-
   tbodyCategory.replaceChildren();
   blocArticle.style.display = "none";
   blocCategory.style.display = "block";
@@ -151,7 +150,6 @@ catBtn.addEventListener("click", function () {
     tbodyCategory.appendChild(row);
   });
 
-
   let catBtns = document.getElementsByClassName("btnCat");
 
   //gestion de l'affichage des articles par catégorie
@@ -170,6 +168,8 @@ catBtn.addEventListener("click", function () {
           createTd(newRow, art.price + " €");
           let btnAction = document.createElement("button");
           btnAction.innerHTML = "Ajouter";
+          btnAction.value = art.id;
+          btnAction.classList.add("addArticle");
           let action = document.createElement("td");
           action.appendChild(btnAction);
           newRow.appendChild(action);
@@ -178,7 +178,6 @@ catBtn.addEventListener("click", function () {
       });
     });
   }
-
 });
 
 //affichage du panier
@@ -217,7 +216,6 @@ function createTd(row, text) {
   row.appendChild(td);
 }
 
-
 //gestion btn
 function offArticle() {
   articleBtn.style.display = "none";
@@ -248,4 +246,3 @@ function onCart() {
   cartBtn.style.display = "block";
   cartBtn2.style.display = "none";
 }
-
