@@ -128,3 +128,32 @@ body {
   color: rgb(106, 167, 216);
   background-color: rgb(212, 230, 235);
 }
+.total div{
+  display: flex;
+  justify-content: right;
+ 
+}
+.total p{
+
+  border: 1px solid black;
+  
+  border-radius: 0.5em;
+  color: white;
+  background-color: rgb(106, 167, 216);
+  margin: 10px;
+  padding: 4px;
+}
+th{
+  color: rgb(106, 167, 216);
+}
+button{
+  border-radius: 0.5em;
+  color: white;
+  background-color: rgb(106, 167, 216);
+}
+td{
+  border: 1px solid black !important;
+}
+h2{
+  color: rgb(106, 167, 216);
+}
