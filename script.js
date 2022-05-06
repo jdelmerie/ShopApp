@@ -92,7 +92,7 @@ articleBtn.addEventListener("click", function () {
     createTd(row, art.getCatName());
     createTd(row, art.price + " €");
     let btnAction = document.createElement("button");
-    
+   
     // btnAction.innerHTML = "click me";
     btnAction.onclick = function () {
         addArticleToCart(art);
