@@ -60,6 +60,10 @@ let articleBtn = document.getElementById("listeA");
 let blocArticle = document.getElementById("article");
 let tbodyCategory = document.getElementById("trCategory");
 let catBtn = document.getElementById("listeB");
+let catBtn2 = document.getElementById("listeB2");
+let articleBtn2 = document.getElementById("listeA2");
+let cartBtn = document.getElementById("listeC");
+let cartBtn2 = document.getElementById("listeC2");
 let blocCategory = document.getElementById("category");
 
 let trArticleByCat = document.getElementById("trArticleByCat");
@@ -67,12 +71,12 @@ let catListName = document.getElementById("catListName");
 
 //Affichage de la liste des articles
 articleBtn.addEventListener("click", function () {
-
   tbodyArticle.replaceChildren();
-
   blocArticle.style.display = "block";
   blocCategory.style.display = "none";
-
+  offArticle();
+  onCat();
+  onCart();
 
   articles.forEach((art) => {
     let row = document.createElement("tr");
@@ -101,6 +105,9 @@ catBtn.addEventListener("click", function () {
   tbodyCategory.replaceChildren();
   blocArticle.style.display = "none";
   blocCategory.style.display = "block";
+  onArticle();
+  offCat();
+  onCart();
   categories.forEach((cat) => {
     let row = document.createElement("tr");
     createTd(row, cat.name);
@@ -114,6 +121,35 @@ catBtn.addEventListener("click", function () {
     row.appendChild(action);
     tbodyCategory.appendChild(row);
   });
+
+
+  let catBtns = document.getElementsByClassName("btnCat");
+
+  //gestion de l'affichage des articles par catégorie
+  for (let j = 0; j < catBtns.length; j++) {
+    catBtns[j].addEventListener("click", function () {
+      trArticleByCat.replaceChildren();
+      let catId = catBtns[j].value;
+      articleByCat.style.display = "block";
+      articles.forEach((art) => {
+        if (art.catId == catId) {
+          catListName.innerHTML = art.getCatName();
+          let newRow = document.createElement("tr");
+          createTd(newRow, art.description);
+          createTd(newRow, art.brand);
+          createTd(newRow, art.getCatName());
+          createTd(newRow, art.price + " €");
+          let btnAction = document.createElement("button");
+          btnAction.innerHTML = "Ajouter";
+          let action = document.createElement("td");
+          action.appendChild(btnAction);
+          newRow.appendChild(action);
+          trArticleByCat.appendChild(newRow);
+        }
+      });
+    });
+  }
+
 });
 
 //create el td
@@ -122,7 +158,36 @@ function createTd(row, text) {
   td.appendChild(document.createTextNode(text));
   row.appendChild(td);
 }
- //addArticle to cart
- function addArticleToCart(art){
 
- }
+
+//gestion btn
+function offArticle() {
+  articleBtn.style.display = "none";
+  articleBtn2.style.display = "block";
+}
+
+function onArticle() {
+  articleBtn.style.display = "block";
+  articleBtn2.style.display = "none";
+}
+
+function offCat() {
+  catBtn.style.display = "none";
+  catBtn2.style.display = "block";
+}
+
+function onCat() {
+  catBtn.style.display = "block";
+  catBtn2.style.display = "none";
+}
+
+function offCart() {
+  cartBtn.style.display = "none";
+  cartBtn2.style.display = "block";
+}
+
+function onCart() {
+  cartBtn.style.display = "block";
+  cartBtn2.style.display = "none";
+}
+
