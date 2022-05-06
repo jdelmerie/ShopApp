@@ -56,7 +56,7 @@ body {
   /* border: 1px solid black; */
   display: block;
 }
-#article, #category {
+#article, #category, #articleByCat {
   display: none;
 }
 .titleinf {

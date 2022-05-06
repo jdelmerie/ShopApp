@@ -7,6 +7,16 @@ class Article {
     this.price = price;
     this.catId = catId;
   }
+
+  getCatName() {
+    let catName;
+    categories.forEach((cat) => {
+      if (cat.id == this.catId) {
+        catName = cat.name;
+      }
+    });
+    return catName;
+  }
 }
 
 class Category {
@@ -17,21 +27,32 @@ class Category {
   }
 }
 
-//add cart class
-
 //liste des cat
 let info = new Category(1, "Matériel informatique", "Indispendsable à un PC");
 let logiciel = new Category(2, "Logiciel", "SA, Antivir");
 let pc = new Category(3, "PC", "Laptop et micro ordinateur");
 let tel = new Category(4, "Téléphone", "Téléphone mobile");
-
 let categories = new Array(info, logiciel, pc, tel);
 
 //liste des articles
 let souris = new Article(1, "Souris", "Logitech", 65, 1);
 let tapis = new Article(2, "Tapis souris", "Chaêau bleu", 5, 1);
-
-let articles = new Array(souris, tapis);
+let laptop = new Article(3, "Laptop", "HP", 1199, 3);
+let cd = new Article(4, "CD", "CETME", 250, 3);
+let batterie = new Article(5, "Batterie Laptop", "HP", 85, 1);
+let iphone = new Article(6, "iPhone 50", "Apple", 2000, 4);
+let samsung = new Article(7, "S10", "Samsung", 1500, 4);
+let clavier = new Article(8, "Clavier", "Logitech", 80, 1);
+let articles = new Array(
+  souris,
+  tapis,
+  laptop,
+  cd,
+  batterie,
+  iphone,
+  samsung,
+  clavier
+);
 
 //Variables globales
 let tbodyArticle = document.getElementById("bdArticle");
@@ -40,22 +61,25 @@ let blocArticle = document.getElementById("article");
 let tbodyCategory = document.getElementById("trCategory");
 let catBtn = document.getElementById("listeB");
 let blocCategory = document.getElementById("category");
-let articlePlace = document.getElementById("infArticle");
+
+let trArticleByCat = document.getElementById("trArticleByCat");
+let catListName = document.getElementById("catListName");
 
 //Affichage de la liste des articles
 articleBtn.addEventListener("click", function () {
+
   tbodyArticle.replaceChildren();
+
   blocArticle.style.display = "block";
   blocCategory.style.display = "none";
 
-  //   console.log(articles.length);
 
   articles.forEach((art) => {
     let row = document.createElement("tr");
     createTd(row, art.description);
     createTd(row, art.brand);
-    createTd(row, art.catId);
-    createTd(row, art.price);
+    createTd(row, art.getCatName());
+    createTd(row, art.price + " €");
     let btnAction = document.createElement("button");
     
     // btnAction.innerHTML = "click me";
@@ -73,15 +97,18 @@ articleBtn.addEventListener("click", function () {
 
 //afichage de la liste des catégories
 catBtn.addEventListener("click", function () {
+
+  tbodyCategory.replaceChildren();
   blocArticle.style.display = "none";
   blocCategory.style.display = "block";
-
   categories.forEach((cat) => {
     let row = document.createElement("tr");
     createTd(row, cat.name);
     createTd(row, cat.description);
     let btnAction = document.createElement("button");
     btnAction.innerHTML = "Voir les articles";
+    btnAction.value = cat.id;
+    btnAction.classList.add("btnCat");
     let action = document.createElement("td");
     action.appendChild(btnAction);
     row.appendChild(action);
