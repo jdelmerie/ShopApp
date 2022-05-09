@@ -122,13 +122,13 @@
             </div>
           </div>
           <div id="infArticle">
-            <table class="table table-striped">
+            <table id="cartTable" class="table table-striped">
               <thead>
                 <tr>
                   <th>DESCRIPTION</th>
                   <th>BRAND</th>
                   <th>CATEGORY</th>
-                  <th>PRIX</th>
+                  <th>PRIX (€)</th>
                   <th>QUANTITY</th>
                   <th>ACTION</th>
                 </tr>
@@ -138,12 +138,14 @@
             <div class="total">
                 <div>
                   <p>TOTAL</p>
-                  <p id="total"> </p>
+                  <p id="total"> 0.0</p>
                   <p>€uro</p>
                 </div>
             </div>
-            <button>Valider le panier</button>
+            <button id="cartValidate">Valider le panier</button>
+            
           </div>
+          <p id="cartEmpty"></p>
         </div>
       </div>
     </section>

@@ -73,6 +73,7 @@ let trArticleByCat = document.getElementById("trArticleByCat");
 let catListName = document.getElementById("catListName");
 let trCart = document.getElementById("trCart");
 let blocCart = document.getElementById("cart");
+let tPrice = document.getElementById("total");
 
 //Affichage de la liste des articles
 articleBtn.addEventListener("click", function () {
@@ -88,7 +89,7 @@ articleBtn.addEventListener("click", function () {
     createTd(row, art.description);
     createTd(row, art.brand);
     createTd(row, art.getCatName());
-    createTd(row, art.price + " €");
+    createTd(row, art.price);
     let btnAction = document.createElement("button");
     btnAction.innerHTML = "Ajouter";
     btnAction.value = art.id;
@@ -101,9 +102,10 @@ articleBtn.addEventListener("click", function () {
 
   //ajout d'un article
   let addBtns = document.getElementsByClassName("addArticle");
-  for (let i = 0; i < addBtns.length; i++) {
-    addBtns[i].addEventListener("click", function () {
-      let articleId = addBtns[i].value;
+  // for (let i = 0; i < addBtns.length; i++) {
+  for (let addBt of addBtns) {
+    addBt.addEventListener("click", function () {
+      let articleId = addBt.value;
       articles.forEach((art) => {
         if (articleId == art.id) {
           for (let i = 0; i < cart.length; i++) {
@@ -145,10 +147,10 @@ catBtn.addEventListener("click", function () {
   let catBtns = document.getElementsByClassName("btnCat");
 
   //gestion de l'affichage des articles par catégorie
-  for (let j = 0; j < catBtns.length; j++) {
-    catBtns[j].addEventListener("click", function () {
+  for (let catB of catBtns) {
+    catB.addEventListener("click", function () {
       trArticleByCat.replaceChildren();
-      let catId = catBtns[j].value;
+      let catId = catB.value;
       articleByCat.style.display = "block";
       articles.forEach((art) => {
         if (art.catId == catId) {
@@ -157,16 +159,35 @@ catBtn.addEventListener("click", function () {
           createTd(newRow, art.description);
           createTd(newRow, art.brand);
           createTd(newRow, art.getCatName());
-          createTd(newRow, art.price + " €");
+          createTd(newRow, art.price);
           let btnAction = document.createElement("button");
           btnAction.innerHTML = "Ajouter";
           btnAction.value = art.id;
-          btnAction.classList.add("addArticle");
+          btnAction.classList.add("addArticl");
           let action = document.createElement("td");
           action.appendChild(btnAction);
           newRow.appendChild(action);
           trArticleByCat.appendChild(newRow);
         }
+        //ajout d'un article
+  let addBtns = document.getElementsByClassName("addArticl");
+  // for (let i = 0; i < addBtns.length; i++) {
+  for (let addBt of addBtns) {
+    addBt.addEventListener("click", function () {
+      let articleId = addBt.value;
+      articles.forEach((art) => {
+        if (articleId == art.id) {
+          for (let i = 0; i < cart.length; i++) {
+            if (cart.key(i) == art.id) {
+              art.quantity += 1;
+            }
+          }
+          localStorage.setItem(articleId, art.quantity);
+          console.log("article ajouté");
+        }
+      });
+    });
+  }
       });
     });
   }
@@ -178,9 +199,14 @@ cartBtn.addEventListener("click", function () {
   blocArticle.style.display = "none";
   blocCategory.style.display = "none";
   blocCart.style.display = "block";
-  onArticle()
-  onCat()
-  offCart()
+  document.getElementById("cartTable").style.display = "block";
+
+  onArticle();
+  onCat();
+  offCart();
+
+  let totalPrice = 0;
+
   console.log(cart);
   console.log(articles);
   for (let i = 0; i < cart.length; i++) {
@@ -190,19 +216,73 @@ cartBtn.addEventListener("click", function () {
         createTd(cartRow, art.description);
         createTd(cartRow, art.brand);
         createTd(cartRow, art.getCatName());
-        createTd(cartRow, art.price + " €");
-        createTd(cartRow, art.quantity);
+        createTd(cartRow, art.price);
+        createTd(cartRow, cart.getItem(art.id));
         let btnAction = document.createElement("button");
+        btnAction.classList.add("deleteArticle")
         btnAction.innerHTML = "Supprimer";
         btnAction.value = art.id;
         let action = document.createElement("td");
         action.appendChild(btnAction);
         cartRow.appendChild(action);
         trCart.appendChild(cartRow);
+        
+        //
+        totalPrice +=art.price*art.quantity;
       }
     });
   }
+  tPrice.innerHTML = totalPrice;
+ 
+
+  //supprimer un article 
+  let deleteBtns = document.getElementsByClassName("deleteArticle");
+  for(let delet of deleteBtns){
+    
+    delet.addEventListener("click", function(){
+      // console.log(document.getElementsByTagName("tr")[delet.value].getElementsByTagName("td")[3].textContent)
+      let deletePrice = document.getElementsByTagName("tr")[delet.value].getElementsByTagName("td")[3].textContent;
+     
+      if(cart.getItem(delet.value) == 1){
+        localStorage.removeItem(delet.value);
+      $(this).closest('tr').remove();
+      tPrice.innerHTML = totalPrice - parseInt(deletePrice); //document.getElementsByTagName("tr")[delet.value].getElementsByTagName("td")[3].textContent;
+      }else{
+      //   localStorage.removeItem(delet.value);
+      // $(this).closest('tr').remove();
+      cart.setItem(delet.value, cart.getItem(delet.value)-1)
+     // console.log(document.getElementsByTagName("tr")[delet.value])
+      let q = document.getElementsByTagName("tr")[delet.value].getElementsByTagName("td")[4];
+      console.log(q)
+      //document.getElementsByTagName("tr")[delet.value].getElementsByTagName("td")[4].innerText = cart.getItem(delet.value)-1;
+      tPrice.innerHTML = totalPrice - parseInt(deletePrice); 
+      }
+      
+    })
+  }
+  //Valider panier
+  let validateCart = document.getElementById("cartValidate");
+  
+  validateCart.addEventListener("click", function () {
+    let text = "Voulez-vous vraiment valider le panier!\nEither OK or Cancel.";
+    if (confirm(text) == true) {
+      text = "yes";
+    } else {
+      text = "no";
+    }
+    if(text=="yes"){
+      cart.clear();
+      document.getElementById("cartTable").style.display = "none";
+      document.getElementById("cartEmpty").innerHTML = "Votre panier est vide - Merci pour l'achat"
+    }
+    
+  })
 });
+
+
+
+
+
 
 //create el td
 function createTd(row, text) {
@@ -241,3 +321,5 @@ function onCart() {
   cartBtn.style.display = "block";
   cartBtn2.style.display = "none";
 }
+
+
